@@ -14,7 +14,7 @@ POST http://localhost:3000/api/dog
 Content-Type: application/json
 
 {
-    "name": "Sharik",
+    "name": "Barbos",
     "breed": "Mops",
     "age": 3
 }

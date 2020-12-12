@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const dogsRouter = require('./routes/dogs.router')
 const { sequelize } = require('./models')
+const cors = require('cors') 
 
 async function sync() {
     await sequelize.authenticate()
@@ -12,7 +13,9 @@ async function sync() {
 }
 sync()
 
+
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('App root')
