@@ -50,3 +50,31 @@ addForm.addEventListener('submit', function (event) {
 })
 
 })
+
+// Удаление собачки по ее идентификатору
+const getDogDelete = document.querySelector('#getDogDelete')
+const getDogDeleteBtn = document.querySelector('#getDogDeleteBtn')
+
+getDogDeleteBtn.addEventListener('click', function(event) {  
+    const dogId = getDogDelete.value
+
+    fetch(`http://localhost:3000/api/dog/${dogId}`).then((response) => {
+        if (response.ok) {
+            return response.json()
+        }
+    }).then((dog) => {            
+        fetch('http://localhost:3000/api/dog/', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',                
+        },
+        body: JSON.stringify({
+            name: dog.name,
+            breed: dog.breed,
+            age: dog.age,
+        })
+
+})  
+        
+    })
+})    

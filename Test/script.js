@@ -3,6 +3,7 @@ if (window.SSR) {
 const divRoot = document.querySelector('#root')
 header.textContent = 'Hello word!'
 divRoot.append(header)
+finishRender()
 }
 
 
