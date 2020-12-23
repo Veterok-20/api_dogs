@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --ignore dogs.json --ignore node_modules app.js",
+    "start": "nodemon --ignore client --ignore node_modules app.js",
     "jsdom": "nodemon --ignore node_modules test.js"
   },
   "keywords": [],

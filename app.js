@@ -4,6 +4,7 @@ const app = express()
 const dogsRouter = require('./routes/dogs.router')
 const { sequelize } = require('./models')
 const cors = require('cors') 
+const dogsPages = require('./pages/dogs.pages')
 
 async function sync() {
     await sequelize.authenticate()
@@ -22,6 +23,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/dog', dogsRouter)
+app.use('/dogs', dogsPages)
+
 
 app.listen(3000, () => {
     console.log('Server started at http://localhost:3000')

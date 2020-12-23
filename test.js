@@ -5,9 +5,9 @@ const express = require("express")
 const {EventEmitter} = require('events') 
 class SSREmitter extends EventEmitter {}
 
-async function render() {
+async function render(string_path) {
     const renderEmitter = new SSREmitter
-    const dom = await JSDOM.fromFile("test/index.html", {
+    const dom = await JSDOM.fromFile(string_path, {
         runScripts: 'dangerously',
         resources: 'usable',
         beforeParse: (window) => {
@@ -22,7 +22,10 @@ async function render() {
             res.send(dom.serialize());
                
       
+  }.then(promise = new Promise((resolve, reject) {
+    const stopped = delay((),1000)
   }
+      )
 
 
 
