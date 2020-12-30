@@ -10,6 +10,7 @@ function checkPathname() {
   const pathname = document.location.pathname;
   if (pathname === "/dogs/" || pathname === "/dogs") renderDogs();
   if (pathname === "/dogs/new") renderNewDog();
+  if (pathname === "/dogs/remove") renderRemoveDog();
 }
 
 function redirect(event, id) {
@@ -26,7 +27,8 @@ function renderDogs() {
       const list = dogs.reduce((acc, dog) => acc + 
       `<li><a onclick="redirect(event, ${dog.id})" href="/dogs/${dog.id}">${dog.name}</li>`, "");
       const template = `<ul>${list}</ul>
-        <a onclick="redirect(event)" href="/dogs/new">Create a dog!!!</a>`;
+        <a onclick="redirect(event)" href="/dogs/new">Create a dog!!!</a><br> 
+        <a onclick="redirect(event)" href="/dogs/remove">Remove a dog!!!</a>`;
       root.innerHTML = template;
       if (window.SSR) finishRender();
     });
@@ -42,6 +44,18 @@ function renderNewDog() {
     </form>`;
   if (window.SSR) finishRender();
 }
+
+function renderRemoveDog() {
+  root.innerHTML = `<a onclick="redirect(event)" href="/dogs/">Back to the main page</a>    
+        <label>Name: <input name="name" type="text"></label>       
+        <button type="submit">Create</button>`;
+   
+  if (window.SSR) finishRender();
+}
+
+
+
+
 
 async function renderDog(id) {
     const response = await fetch('/api/dogs/' + id)
@@ -74,3 +88,17 @@ async function createDog(event) {
     checkPathname();
   }
 }
+
+async function RemoveDog(event) {
+  event.preventDefault();
+  root.innerHTML = `<a onclick="redirect(event)" href="/dogs/">Back to the main page</a>`
+  // const response = await fetch('/api/dog').then(response => response.json()).then(dogs => {
+  //     dogs = dogs.splice(dogs.name,1) 
+  const response = await fetch('/api/dog');
+  if (response.ok) {
+    history.pushState({}, "", "/dogs/");
+    checkPathname();
+  }
+  }
+}
+ 

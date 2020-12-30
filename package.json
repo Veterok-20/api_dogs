@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --ignore client --ignore node_modules app.js"
-    
   },
   "keywords": [],
   "author": "",

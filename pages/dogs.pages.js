@@ -10,6 +10,10 @@ dogsPages.get("/new", async (req, res) => {
   res.send(await renderDogs("/new"));
 });
 
+dogsPages.get("/remove", async (req, res) => {
+  res.send(await renderDogs("/remove"));
+});
+
 dogsPages.get("/", async (req, res) => {
   res.send(await renderDogs("/"));
 });
